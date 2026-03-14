@@ -38,9 +38,9 @@ Gain:20
   Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state:
 
 <p align="center">
-  <img src="Assets/Bit1.jpg" width="45%" alt="Logic 1 Pulse">
+  <img src="Assets/Byte1.jpg" width="45%" alt="Logic 1 Pulse">
   &nbsp; &nbsp;
-  <img src="Assets/Bit0.jpg" width="45%" alt="Logic 0 Pulse">
+  <img src="Assets/Byte0.jpg" width="45%" alt="Logic 0 Pulse">
 </p>
 
 *> Figure 4 (Left): Width of a logical "1" pulse (approx. 503.50 µs). Figure 5 (Right): Width of a logical "0" pulse (approx. 510.00 µs).*
