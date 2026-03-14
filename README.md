@@ -12,10 +12,10 @@ To accurately reproduce the commands, I first had to intercept the original remo
 *> Figure 0: SDR++ waterfall and spectrum analyzer used for hunting the remote control's transmission frequency.*
 
 I performed reverse engineering using **Universal Radio Hacker (URH)** in order to demodulate and then do a replay attack on the RC car. The URH settings used to record the signal were as follows:
-Freq: 27.14Mhz
-Sample rate: 2.0Mhz
-BW: 2Mhz
-Gain:20
+Freq: 27.14Mhz;  
+Sample rate: 2.0Mhz;  
+BW: 2Mhz;  
+Gain:20  
 
 ### Modulation (Physical Layer)
 Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
