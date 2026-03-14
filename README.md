@@ -1,14 +1,21 @@
 #  SDR RC Car Controller (HackRF & Python)
 
-This project demonstrates taking control of a commercial RC vehicle (27 MHz) using a **HackRF One** and a graphical user interface developed in Python. 
+This project demonstrates taking control of a simple RC vehicle that operates on 27MHz using a **HackRF One** and a graphical user interface developed in Python. 
 
 Unlike traditional SDR scripts that introduce high execution latency, this application utilizes a permanently open **IPC (Inter-Process Communication)** channel and injects I/Q samples directly from RAM, achieving **zero-latency** keyboard control.
 
 ---
 
 ##  1. Protocol Reverse Engineering (Baseband Analysis)
+To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.
+![SDR++ Spectrum](Assets/spectrum.jpg)
+*> Figure 0: SDR++ waterfall and spectrum analyzer used for hunting the remote control's transmission frequency.*
 
-To accurately reproduce the commands, I intercepted the original remote control signals and performed reverse engineering using **Universal Radio Hacker (URH)**.
+I performed reverse engineering using **Universal Radio Hacker (URH)** in order to demodulate and then do a replay attack on the RC car. The URH settings used to record the signal were as follows:
+Freq: 27.14Mhz
+Sample rate: 2.0Mhz
+BW: 2Mhz
+Gain:20
 
 ### Modulation (Physical Layer)
 Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
@@ -38,12 +45,6 @@ Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse
 
 *> Figure 4 (Left): Width of a logical "1" pulse (approx. 503.50 µs). Figure 5 (Right): Width of a logical "0" pulse (approx. 510.00 µs).*
 
-### Differential Analysis
-Once the bits were extracted, I performed a differential analysis to isolate the structure of the data frames. 
-
-![Differential Analysis](Assets/diff_analysis.png)
-*> Figure 6: Differential analysis in URH. The first columns represent the **Preamble (Sync Word)**, identical for all commands. The red-marked bits represent the pulse width variations (Payload) that dictate the movement direction to the H-bridges.*
-
 ---
 
 ## 2. Software Architecture & Design Decisions
@@ -63,13 +64,19 @@ I implemented a continuous streaming pipeline:
 * **Deadlock Prevention (Stderr Polling):** A separate *Error Reader Thread* constantly drains the hardware's `stderr` channel to prevent OS buffer overflow and main process blocking.
 * **Windows EOF Sanitization:** On Windows, a RAM filter sanitizes the binary payload by replacing the `0x1A` byte with `0x1B`, preventing the accidental triggering of an EOF (End of File) signal inside the STDIN pipe.
 
+* ### 🖥️ Graphical User Interface (The Dashboard)
+The application features real-time graphical interface developed using `customtkinter`. This dashboard serves as the central command hub for the vehicle, providing a visual bridge between keyboard inputs and SDR hardware management.
+
+![RC Car Controller Dashboard](Assets/Dashboard.jpg)
+*> Figure 7: The main application window showing a detailed view of the control interface.*
+
 ---
 
 ##  3. Running the Project
 
 ### Requirements
-* Hardware: **HackRF One** and an RC vehicle (27 MHz)
-* Software: Universal Radio Hacker,Python 3.x, `hackrf-tools` added to the system PATH.
+* Hardware: **HackRF One** and a RC vehicle (27 MHz)
+* Software: Universal Radio Hacker,,SDR++/SDr3, or any other SDR software, Python 3.x, `hackrf-tools` added to the system PATH.
 
 ### Installation and Usage
 1. Clone the repository:
