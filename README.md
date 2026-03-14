@@ -1,41 +1,41 @@
 #  SDR RC Car Controller (HackRF & Python)
 
-  This project demonstrates taking control of a simple RC vehicle that operates on 27MHz using a **HackRF One** and a graphical user interface developed in Python. 
+  &emsp This project demonstrates taking control of a simple RC vehicle that operates on 27MHz using a **HackRF One** and a graphical user interface developed in Python. 
 
-  Unlike traditional SDR scripts that introduce high execution latency, this application utilizes a permanently open **IPC (Inter-Process Communication)** channel and injects I/Q samples directly from RAM, achieving **zero-latency** keyboard control.
+&emsp Unlike traditional SDR scripts that introduce high execution latency, this application utilizes a permanently open **IPC (Inter-Process Communication)** channel and injects I/Q samples directly from RAM, achieving **zero-latency** keyboard control.
 
 ---
 
 ##  1. Protocol Reverse Engineering (Baseband Analysis)
-  To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.
+&emsp To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.
 ![SDR++ Spectrum](Assets/spectrum.jpg)
 *> Figure 0: SDR++ waterfall and spectrum analyzer used for hunting the remote control's transmission frequency.*
 
-  I performed the reverse engineering process using **Universal Radio Hacker (URH)** in order to demodulate and then do a replay attack on the RC car. The URH settings used to record the signal were as follows:  
+&emsp I performed the reverse engineering process using **Universal Radio Hacker (URH)** in order to demodulate and then do a replay attack on the RC car. The URH settings used to record the signal were as follows:  
 Freq: 27.14Mhz      
 Sample rate: 2.0Mhz      
 BW: 2Mhz     
 Gain:20    
 
 ### Modulation (Physical Layer)
-  Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
+&emsp Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
 
 ![Analog OOK Modulation](Assets/ASK_OOKdemo.jpg)
 *> Figure 1: Analog visualization, without prior demodulation. The presence of OOK modulation is observed following the time-domain analysis of the signal.*
 
 ### Data Extraction (Baseband Demodulation)
-  The system translates the presence of the carrier wave into a logical "High" state and its absence into a "Low" state. Below are the signals corresponding to the standard directions (Forward, Backwards, Left), demodulated and represented digitally in the baseband.
+&emsp The system translates the presence of the carrier wave into a logical "High" state and its absence into a "Low" state. Below are the signals corresponding to the standard directions (Forward, Backwards, Left), demodulated and represented digitally in the baseband.
 
 ![Standard Signals](Assets/Demodulation1.jpg)
 *> Figure 2: The signals for the standard directions, demodulated, in the baseband.*
 
-  The same technique was applied to the complex commands. This decoding confirms that the diagonal directions are not simple mathematical overlays of signals, but rather distinct data sequences transmitted by the remote control.
+&emsp The same technique was applied to the complex commands. This decoding confirms that the diagonal directions are not simple mathematical overlays of signals, but rather distinct data sequences transmitted by the remote control.
 
 ![Diagonal Signals](Assets/Demodulation2.jpg)
 *> Figure 3: The signals of the diagonals demodulated in the baseband.*
 
 ### Data Encoding (Decoding the PWM Protocol)
-  Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state:
+&emsp Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state:
 
 <p align="center">
   <img src="Assets/Byte1.jpg" width="45%" alt="Logic 1 Pulse">
@@ -49,7 +49,7 @@ Gain:20
 
 ## 2. Software Architecture & Design Decisions
 
-  The primary challenge of the project was **eliminating latency**. Launching a terminal command (`hackrf_transfer`) on every keystroke introduced a 100-200ms delay.
+&emsp The primary challenge of the project was **eliminating latency**. Launching a terminal command (`hackrf_transfer`) on every keystroke introduced a 100-200ms delay.
 
 ### The Solution: The "Data Pump" Architecture
 I implemented a continuous streaming pipeline:
@@ -65,7 +65,7 @@ I implemented a continuous streaming pipeline:
 * **Windows EOF Sanitization:** On Windows, a RAM filter sanitizes the binary payload by replacing the `0x1A` byte with `0x1B`, preventing the accidental triggering of an EOF (End of File) signal inside the STDIN pipe.
 
 * ### 🖥️ Graphical User Interface (The Dashboard)
-  The application features real-time graphical interface developed using `customtkinter`. This dashboard serves as the central command hub for the vehicle, providing a visual bridge between keyboard inputs and SDR hardware management.
+&emsp The application features real-time graphical interface developed using `customtkinter`. This dashboard serves as the central command hub for the vehicle, providing a visual bridge between keyboard inputs and SDR hardware management.
 
 ![RC Car Controller Dashboard](Assets/Dashboard.jpg)
 *> Figure 7: The main application window showing a detailed view of the control interface.*
