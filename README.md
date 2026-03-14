@@ -67,7 +67,7 @@ I implemented a continuous streaming pipeline:
 * ### 🖥️ Graphical User Interface (The Dashboard)
 &emsp; The application features real-time graphical interface developed using `customtkinter`. This dashboard serves as the central command hub for the vehicle, providing a visual bridge between keyboard inputs and SDR hardware management.
 
-![RC Car Controller Dashboard](Assets/Dashboard.jpg)
+![RC Car Controller Dashboard](Assets/Dashboard.jpg)  
 *> Figure 7: The main application window showing a detailed view of the control interface.*
 
 ---
