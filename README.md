@@ -58,7 +58,7 @@ I implemented a continuous streaming pipeline:
 3. **When no key is pressed:** We inject arrays of zeros (transmitting a silent carrier wave).
 4. **When a key is pressed:** The pointer instantly jumps to the RAM buffer containing the desired RF footprint.
 
-### Advanced Technical Features:
+### Technical Features:
 * **RAM Pre-Caching:** All `.complex16s` files are loaded into RAM on startup to eliminate latency and micro-interruptions caused by disk reading (RF Jitter).
 * **Wrap-Around Logic (Seamless Looping):** The algorithm dynamically recalculates the 64 KB chunks, allowing the signal to run in a perfect loop as long as the key is held down.
 * **Deadlock Prevention (Stderr Polling):** A separate *Error Reader Thread* constantly drains the hardware's `stderr` channel to prevent OS buffer overflow and main process blocking.
