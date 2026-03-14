@@ -1,4 +1,4 @@
-# 🏎️ Zero-Latency SDR RC Car Controller (HackRF & Python)
+#  SDR RC Car Controller (HackRF & Python)
 
 This project demonstrates taking control of a commercial RC vehicle (27 MHz) using a **HackRF One** and a graphical user interface developed in Python. 
 
@@ -6,7 +6,7 @@ Unlike traditional SDR scripts that introduce high execution latency, this appli
 
 ---
 
-## 🔬 1. Protocol Reverse Engineering (Baseband Analysis)
+##  1. Protocol Reverse Engineering (Baseband Analysis)
 
 To accurately reproduce the commands, I intercepted the original remote control signals and performed reverse engineering using **Universal Radio Hacker (URH)**.
 
@@ -46,7 +46,7 @@ Once the bits were extracted, I performed a differential analysis to isolate the
 
 ---
 
-## 💻 2. Software Architecture & Design Decisions
+## 2. Software Architecture & Design Decisions
 
 The primary challenge of the project was **eliminating latency**. Launching a terminal command (`hackrf_transfer`) on every keystroke introduced a 100-200ms delay.
 
@@ -65,7 +65,7 @@ I implemented a continuous streaming pipeline:
 
 ---
 
-## 🚀 3. Running the Project
+##  3. Running the Project
 
 ### Requirements
 * Hardware: **HackRF One** and an RC vehicle (27 MHz)
