@@ -1,0 +1,4 @@
+HackRf
+27Mhz antenna
+rc car
+python(customtkinter)
