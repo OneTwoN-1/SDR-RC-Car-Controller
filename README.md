@@ -76,7 +76,7 @@ I implemented a continuous streaming pipeline:
 
 ### Requirements
 * Hardware: **HackRF One** and a RC vehicle (27 MHz)
-* Software: Universal Radio Hacker,,SDR++/SDr3, or any other SDR software, Python 3.x, `hackrf-tools` added to the system PATH.
+* Software: Universal Radio Hacker, SDR++/SDr3, or any other SDR software, Python 3.x, `hackrf-tools` added to the system PATH.
 
 ### Installation and Usage
 1. Clone the repository:
