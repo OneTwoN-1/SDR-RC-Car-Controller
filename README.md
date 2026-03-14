@@ -33,7 +33,7 @@ Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse
 <p align="center">
   <img src="Assets/Bit1.jpg" width="45%" alt="Logic 1 Pulse">
   &nbsp; &nbsp;
-  <img src="Assets/Bit0.png" width="45%" alt="Logic 0 Pulse">
+  <img src="Assets/Bit0.jpg" width="45%" alt="Logic 0 Pulse">
 </p>
 
 *> Figure 4 (Left): Width of a logical "1" pulse (approx. 503.50 µs). Figure 5 (Right): Width of a logical "0" pulse (approx. 510.00 µs).*
