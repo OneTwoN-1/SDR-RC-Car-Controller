@@ -7,8 +7,8 @@
 ---
 
 ##  1. Protocol Reverse Engineering (Baseband Analysis)
-&emsp; To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.
-![SDR++ Spectrum](Assets/spectrum.jpg)
+&emsp; To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.  
+![SDR++ Spectrum](Assets/spectrum.jpg)  
 *> Figure 0: SDR++ waterfall and spectrum analyzer used for hunting the remote control's transmission frequency.*
 
 &emsp; I performed the reverse engineering process using **Universal Radio Hacker (URH)** in order to demodulate and then do a replay attack on the RC car. The URH settings used to record the signal were as follows:  
