@@ -13,18 +13,18 @@ To accurately reproduce the commands, I intercepted the original remote control 
 ### Modulation (Physical Layer)
 Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
 
-![Analog OOK Modulation](assets/ASK_OOKdemo.jpg)
+![Analog OOK Modulation](Assets/ASK_OOKdemo.jpg)
 *> Figure 1: Analog visualization, without prior demodulation. The presence of OOK modulation is observed following the time-domain analysis of the signal.*
 
 ### Data Extraction (Baseband Demodulation)
 The system translates the presence of the carrier wave into a logical "High" state and its absence into a "Low" state. Below are the signals corresponding to the standard directions (Forward, Backwards, Left), demodulated and represented digitally in the baseband.
 
-![Standard Signals](assets/Demodulation1.jpg)
+![Standard Signals](Assets/Demodulation1.jpg)
 *> Figure 2: The signals for the standard directions, demodulated, in the baseband.*
 
 The same technique was applied to the complex commands. This decoding confirms that the diagonal directions are not simple mathematical overlays of signals, but rather distinct data sequences transmitted by the remote control.
 
-![Diagonal Signals](assets/Demodulation2.jpg)
+![Diagonal Signals](Assets/Demodulation2.jpg)
 *> Figure 3: The signals of the diagonals demodulated in the baseband.*
 
 ### Data Encoding (Decoding the PWM Protocol)
@@ -41,7 +41,7 @@ Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse
 ### Differential Analysis
 Once the bits were extracted, I performed a differential analysis to isolate the structure of the data frames. 
 
-![Differential Analysis](assets/diff_analysis.png)
+![Differential Analysis](Assets/diff_analysis.png)
 *> Figure 6: Differential analysis in URH. The first columns represent the **Preamble (Sync Word)**, identical for all commands. The red-marked bits represent the pulse width variations (Payload) that dictate the movement direction to the H-bridges.*
 
 ---
