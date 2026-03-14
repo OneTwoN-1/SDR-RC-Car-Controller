@@ -8,6 +8,7 @@
 
 ##  1. Protocol Reverse Engineering (Baseband Analysis)
 &emsp; To accurately reproduce the commands, I first had to intercept the original remote control signals. To identify the exact operating frequency of the RC car, I used **SDR++**. Below is a screenshot of the RF spectrum and the configuration used to detect the correct carrier frequency.  
+
 ![SDR++ Spectrum](Assets/spectrum.jpg)  
 *> Figure 0: SDR++ waterfall and spectrum analyzer used for hunting the remote control's transmission frequency.*
 
@@ -20,7 +21,7 @@ Gain:20
 ### Modulation (Physical Layer)
 &emsp; Analog visualization of the raw signal, prior to applying the demodulation threshold. Time-domain analysis of the signal envelope clearly highlights the presence of **OOK (On-Off Keying)** modulation. It can be observed how information is transmitted by simply switching the RF carrier on and off.
 
-![Analog OOK Modulation](Assets/ASK_OOKdemo.jpg)
+![Analog OOK Modulation](Assets/ASK_OOKdemo.jpg)  
 *> Figure 1: Analog visualization, without prior demodulation. The presence of OOK modulation is observed following the time-domain analysis of the signal.*
 
 ### Data Extraction (Baseband Demodulation)
