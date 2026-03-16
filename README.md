@@ -78,6 +78,7 @@ I implemented a continuous streaming pipeline:
 ### Requirements
 * Hardware: **HackRF One** and a RC vehicle (27 MHz)
 * Software: Universal Radio Hacker, SDR++/SDR#, or any other SDR software, Python 3.x, `hackrf-tools` added to the system PATH.
+* Note: The application might not start directly from a standard Python terminal. If attempted, the execution will fail with the error: 'hackrf_transfer' not found. Install hackrf-tools.. To run the app correctly, I recommend installing Radioconda. Radioconda will automatically set up the environment and install all the necessary system utilities for HackRF (including hackrf_transfer).The error happens because the Python app is trying to execute a system command (hackrf_transfer), which is a separate executable, not a Python library installed via pip. A standard Python environment doesn't have this command in its PATH, whereas Radioconda (a specialized SDR distribution) installs these tools so your script can easily access them."
 
 ### Installation and Usage
 1. Clone the repository:
