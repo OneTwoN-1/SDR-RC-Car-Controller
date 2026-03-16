@@ -82,7 +82,7 @@ I implemented a continuous streaming pipeline:
 
  ## 4. Demo
 You can see the live demonstration of the car working by clicking the link below:  
-[▶️ Click here for the live demo](Assets/Demo.mp4)
+[▶️ Click here for the live demo](https://youtube.com/shorts/5lvyyr6I2Y8?feature=share)
 
 ### Installation and Usage
 1. Clone the repository:
