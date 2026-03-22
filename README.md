@@ -26,7 +26,7 @@ Gain:20
 
 ### Data Extraction (Baseband Demodulation)
 &emsp; To mathematically validate the findings from the visual inspection in URH, the raw baseband signals (`.complex16s`) were imported into **MATLAB** for rigorous Digital Signal Processing (DSP). 
-  The raw files contain interleaved 8-bit signed I/Q samples captured at a rate of 2 MSPS. The complex signal was reconstructed using the formula $S(t) = I(t) + jQ(t)$.
+The raw files contain interleaved 8-bit signed I/Q samples captured at a rate of 2 MSPS. The complex signal was reconstructed using the formula $S(t) = I(t) + jQ(t)$.
 
 #### 1. Time-Domain Analysis & Envelope Extraction
   The raw magnitude of the complex RF signal is inherently noisy. To accurately observe the OOK/PWM pulses, a **Moving Average Low-Pass Filter** was applied to the signal's magnitude. This mathematical smoothing reveals the clean amplitude envelope, allowing for precise microsecond measurements of the duty cycles.
@@ -40,7 +40,7 @@ Gain:20
 *> Figure 3: The signals of the diagonals demodulated in the baseband.*
 
 ### Data Encoding (Decoding the PWM Protocol)
-&emsp; Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state:
+&emsp; Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state( to measure ethe exact durations of the pulses, the UpLeft commmand was used as a refference, However, these timing measurements are universal and apply to all other signals in the protocol):
 
 <p align="center">
   <img src="Assets/Durata1.jpg" width="45%" alt="Logic 1 Pulse">
