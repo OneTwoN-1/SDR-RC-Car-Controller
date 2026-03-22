@@ -50,6 +50,10 @@ The raw files contain interleaved 8-bit signed I/Q samples captured at a rate of
 
 *> Figure 4 (Left): Width of a logical "1" pulse (approx. 1.226 ms). Figure 5 (Right): Width of a logical "0" pulse (approx. 0.36 ms = 360 µs).*
 
+> 💡 **Note:** 2 custom MATLAB scripts were developed for this project: one for the diagonals, one for the main directions. You can find both of them attached to this repo here:
+> [Script for the diagonals](ScriptDiagonals.m)
+> [Script for main directions](ScriptMainDirs.m)
+
 ---
 
 ## 2. Software Architecture & Design Decisions
