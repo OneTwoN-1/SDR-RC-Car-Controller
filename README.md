@@ -40,7 +40,7 @@ The raw files contain interleaved 8-bit signed I/Q samples captured at a rate of
 *> Figure 3: The signals of the diagonals demodulated in the baseband.*
 
 ### Data Encoding (Decoding the PWM Protocol)
-&emsp; Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state( to measure ethe exact durations of the pulses, the UpLeft commmand was used as a refference, However, these timing measurements are universal and apply to all other signals in the protocol):
+&emsp; Temporal analysis of the demodulated signal demonstrates the use of **PWM (Pulse Width Modulation)** encoding for transmitting logical information. The microcontroller differentiates the bits by measuring the duration of the active state( to measure the exact durations of the pulses, the UpLeft commmand was used as a refference. However, these timing measurements are universal and apply to all other signals in the protocol):
 
 <p align="center">
   <img src="Assets/Durata1.jpg" width="45%" alt="Logic 1 Pulse">
