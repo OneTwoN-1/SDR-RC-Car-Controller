@@ -25,14 +25,18 @@ Gain:20
 *> Figure 1: Analog visualization, without prior demodulation. The presence of OOK modulation is observed following the time-domain analysis of the signal.*
 
 ### Data Extraction (Baseband Demodulation)
-&emsp; The system translates the presence of the carrier wave into a logical "High" state and its absence into a "Low" state. Below are the signals corresponding to the standard directions (Forward, Backwards, Left), demodulated and represented digitally in the baseband.
+&emsp; To mathematically validate the findings from the visual inspection in URH, the raw baseband signals (`.complex16s`) were imported into **MATLAB** for rigorous Digital Signal Processing (DSP). 
+  The raw files contain interleaved 8-bit signed I/Q samples captured at a rate of 2 MSPS. The complex signal was reconstructed using the formula $S(t) = I(t) + jQ(t)$.
 
-![Standard Signals](Assets/Demodulation1.jpg)
+#### 1. Time-Domain Analysis & Envelope Extraction
+  The raw magnitude of the complex RF signal is inherently noisy. To accurately observe the OOK/PWM pulses, a **Moving Average Low-Pass Filter** was applied to the signal's magnitude. This mathematical smoothing reveals the clean amplitude envelope, allowing for precise microsecond measurements of the duty cycles.
+
+![Standard Signals](Assets/Directii1.jpg)
 *> Figure 2: The signals for the standard directions, demodulated, in the baseband.*
 
 &emsp; The same technique was applied to the complex commands. This decoding confirms that the diagonal directions are not simple mathematical overlays of signals, but rather distinct data sequences transmitted by the remote control.
 
-![Diagonal Signals](Assets/Demodulation2.jpg)
+![Diagonal Signals](Assets/Directii2.jpg)
 *> Figure 3: The signals of the diagonals demodulated in the baseband.*
 
 ### Data Encoding (Decoding the PWM Protocol)
